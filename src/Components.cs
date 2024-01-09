@@ -63,18 +63,27 @@ namespace VesselFeud
         public static Component Grid(Tile[,] grid)
         {
             Component res = new Component();
+            string[] letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+            res.WriteLine("    1 2 3 4 5 6 7 8  ");
+            res.WriteLine("  ┌─────────────────┐");
             for (int x = 0; x < 8; x++)
             {
+                res.Write($"{letters[x]} │ ");
                 for (int y = 0; y < 8; y++)
                 {
-                    res.Write($"{(char)grid[x, y]} ");
+                    char supplement = ' ';
+                    try {
+                    if (grid[x, y] == Tile.h_N | grid[x, y] == Tile.h_S) { supplement = (char)(Tile.h_N); } 
+                    } catch {
+                        supplement = ' ';
+                    }
+                    res.Write($"{(char)grid[x, y]}{supplement}");
                 }
-                res.WriteLine("");
+                res.WriteLine("│");
             }
+            res.WriteLine("  └─────────────────┘");
             return res;
 
-            Component res = new Component();
-            // thinking
 
         }
 
