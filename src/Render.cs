@@ -1,7 +1,6 @@
 
 namespace VesselFeud {
-    public enum FgColours
-    {
+    public enum FgColours {
         Black = 0,
         DarkRed = 1,
         DarkGreen = 2,
@@ -21,8 +20,7 @@ namespace VesselFeud {
         Default = 0
     }
 
-    public enum BgColours
-    {
+    public enum BgColours {
         Black = 0,
         DarkRed = 16,
         DarkGreen = 32,
@@ -42,17 +40,17 @@ namespace VesselFeud {
         Default = 0
     }
 
-    public class Component
-    {
+
+
+    //MAKE ALIGNING TO CENTER WORK
+    public class Component {
         public String self;
-        public void Write(string content, FgColours fg = FgColours.White, BgColours bg = BgColours.Default) { String strung = $"\x1b[38;5;{(int)fg}m\x1b[48;5;{(int)bg}m{content}\x1b[0m"; self += strung; if (dimensions.Item1 <= strung.Length) { dimensions.Item1 = strung.Length; } }
-        public void WriteLine(string content, FgColours fg = FgColours.White, BgColours bg = BgColours.Default) {String strung = $"\x1b[38;5;{(int)fg}m\x1b[48;5;{(int)bg}m{content}\x1b[0m\n"; self += strung; if(dimensions.Item1 <= strung.Length) { dimensions.Item1 = strung.Length;} dimensions.Item2 += 1; }
+        public void w(string content, FgColours fg = FgColours.White, BgColours bg = BgColours.Default) { String strung = $"\x1b[38;5;{(int)fg}m\x1b[48;5;{(int)bg}m{content}\x1b[0m"; self += strung; if (dimensions.Item1 <= strung.Length) { dimensions.Item1 = strung.Length; } }
+        public void wl(string content, FgColours fg = FgColours.White, BgColours bg = BgColours.Default) { String strung = $"\x1b[38;5;{(int)fg}m\x1b[48;5;{(int)bg}m{content}\x1b[0m\n"; self += strung; if (dimensions.Item1 <= strung.Length) { dimensions.Item1 = strung.Length; } dimensions.Item2 += 1; }
         public Component(string self = "") => this.self = self;
         public (int, int) dimensions;
-        public void Render(int x, int y)
-        {
-            foreach (string line in self.Split("\n"))
-            {
+        public void draw(int x, int y) {
+            foreach (string line in self.Split("\n")) {
                 Console.SetCursorPosition(x, y++);
                 Console.Write(line);
 
