@@ -38,7 +38,7 @@ namespace VesselFeud {
             menu.wl("│       Mode       │");
             menu.wl("│   1.PVP          │");
             menu.wl("│   2.PVE          │");
-            menu.wl("│   3.back         │");
+            menu.wl("│   3.EVE          │");
             menu.wl("╰──────────────────╯");
             return menu;
         }
@@ -48,8 +48,9 @@ namespace VesselFeud {
             Component menu = new Component();
             menu.wl("╭──────────────────╮");
             menu.wl("│     Load File    │");
-            menu.wl("│                  │");
+            menu.wl("│     enter path   │");
             menu.wl("╰──────────────────╯");
+            menu.w("Path:");
             return menu;
         }
 
@@ -81,8 +82,14 @@ namespace VesselFeud {
 
 
         //TODO ADD Limbo saying, player 2's turn , press any key to contiinue
-        public static Component Limbo() {
-            throw new UnauthorizedAccessException();
+        public static Component Limbo(string player) {
+            Component res = new Component();
+            Console.Clear();
+            res.wl($"   {player}'s turn      ", FgColours.Red);
+            res.wl("press any key to continue");
+            return res;
+
+
         }
 
 

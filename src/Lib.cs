@@ -1,6 +1,6 @@
+using System.Text.Json;
+
 namespace VesselFeud {
-
-
 
     public enum Tile {
         // BASIC stuff
@@ -43,8 +43,8 @@ namespace VesselFeud {
                 {'h',7},
             };
 
-        protected Tile[,] pGrid = new Tile[8, 8];
-        protected Tile[,] eGrid = new Tile[8, 8];
+        public Tile[,] pGrid = new Tile[8, 8];
+        public Tile[,] eGrid = new Tile[8, 8];
 
         public void init_grid() {
             for (int y = 0; y < 8; y++) {
@@ -136,7 +136,7 @@ namespace VesselFeud {
                     Tile tile = Tile.v_N;
                     if (i == 0) tile = Tile.v_S;
                     else if (i == ship.length - 1) tile = Tile.v_E;
-                    pGrid[x , y + i] = tile;
+                    pGrid[x, y + i] = tile;
 
                 }
             }
@@ -144,8 +144,6 @@ namespace VesselFeud {
         }
 
     }
-
-//TODO GAME SERIALIZATION/DESERIALIZATIOn
 
 
 }
