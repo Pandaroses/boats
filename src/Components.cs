@@ -2,6 +2,8 @@ using System;
 
 namespace VesselFeud {
     public class Components {
+
+    
         public static Component StartupBoat() {
             Component battleship = new Component();
             battleship.wl("                                     |__");
@@ -85,7 +87,7 @@ namespace VesselFeud {
         public static Component Limbo(string player) {
             Component res = new Component();
             Console.Clear();
-            res.wl($"   {player}'s turn      ", FgColours.Red);
+            res.wl($"{player}     ", FgColours.Red);
             res.wl("press any key to continue");
             return res;
 

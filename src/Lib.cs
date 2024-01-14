@@ -75,7 +75,7 @@ namespace VesselFeud {
         public abstract (int, int) Turn();
 
         public bool hasLost() {
-            return pGrid.Cast<Tile>().Any(tile => tile != Tile.Hit && tile != Tile.Missed && tile != Tile.Empty);
+            return !pGrid.Cast<Tile>().Any(tile => (tile != Tile.Hit && tile != Tile.Missed && tile != Tile.Empty));
         }
 
         public abstract void place_ships(Ship[] ships);
@@ -113,7 +113,7 @@ namespace VesselFeud {
         }
 
         public bool verify_placement(int x, int y, Ship ship, bool h) {
-            if (h & x + ship.length > 7) { return false; } else if (y + ship.length > 7) { return false; }
+            if (h && x + ship.length-1 > 7) { return false; } else if (y + ship.length-1 > 7) { return false; }
             for (int i = 0; i < ship.length; i++) {
                 if (h) {
                     if (pGrid[x + i, y] != Tile.Empty) {

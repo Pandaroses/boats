@@ -1,17 +1,12 @@
 ﻿
+using VesselFeud;
+
 namespace VesselFeud {
     internal class Program {
-        public static int MIDDLEX = Console.WindowWidth / 2;
-        public static int MIDDLEY = Console.WindowHeight / 2;
         static void Main(string[] args) {
-            // Ship[] ships = { new Ship("balls", 4, 4) };
-
-
-            // Console.Clear();
-
+            Game meow = new Game();
+            meow.init();
             // //TODO add to game
-            // Human player = new Human();
-            // Human enemy = new Human();
             // player.init_grid();
             // enemy.init_grid();
             // player.place_ships(ships);
