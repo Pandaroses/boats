@@ -43,6 +43,7 @@ namespace VesselFeud {
                 {'h',7},
             };
 
+        public string? name;
         public Tile[,] pGrid = new Tile[8, 8];
         public Tile[,] eGrid = new Tile[8, 8];
 
@@ -113,7 +114,7 @@ namespace VesselFeud {
         }
 
         public bool verify_placement(int x, int y, Ship ship, bool h) {
-            if (h && x + ship.length-1 > 7) { return false; } else if (y + ship.length-1 > 7) { return false; }
+            if (h && x + ship.length - 1 > 7) { return false; } else if (y + ship.length - 1 > 7) { return false; }
             for (int i = 0; i < ship.length; i++) {
                 if (h) {
                     if (pGrid[x + i, y] != Tile.Empty) {

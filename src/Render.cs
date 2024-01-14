@@ -49,7 +49,7 @@ namespace VesselFeud {
         public void wl(string content, FgColours fg = FgColours.White, BgColours bg = BgColours.Default) { String strung = $"\x1b[38;5;{(int)fg}m\x1b[48;5;{(int)bg}m{content}\x1b[0m\n"; self += strung; if (dimensions.Item1 <= strung.Length) { dimensions.Item1 = strung.Length; } dimensions.Item2 += 1; }
         public Component(string self = "") => this.self = self;
         public (int, int) dimensions;
-        public void draw(int x,int y) {
+        public void draw(int x, int y) {
             foreach (string line in self.Split("\n")) {
                 Console.SetCursorPosition(x, y++);
                 Console.Write(line);

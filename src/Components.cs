@@ -3,7 +3,7 @@ using System;
 namespace VesselFeud {
     public class Components {
 
-    
+
         public static Component StartupBoat() {
             Component battleship = new Component();
             battleship.wl("                                     |__");
@@ -40,7 +40,6 @@ namespace VesselFeud {
             menu.wl("│       Mode       │");
             menu.wl("│   1.PVP          │");
             menu.wl("│   2.PVE          │");
-            menu.wl("│   3.EVE          │");
             menu.wl("╰──────────────────╯");
             return menu;
         }
@@ -50,7 +49,6 @@ namespace VesselFeud {
             Component menu = new Component();
             menu.wl("╭──────────────────╮");
             menu.wl("│     Load File    │");
-            menu.wl("│     enter path   │");
             menu.wl("╰──────────────────╯");
             menu.w("Path:");
             return menu;
