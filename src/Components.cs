@@ -54,6 +54,24 @@ namespace VesselFeud {
             return menu;
         }
 
+        public static Component Rules() {
+            Component rule = new Component();
+            rule.wl("vesselfeuds rules", FgColours.DarkBlue, BgColours.DarkYellow);
+            rule.wl("1. you place ships", FgColours.Magenta, BgColours.White);
+
+            // Continue with the remaining rules:
+            rule.wl("2. you take turns firing at each other's boards", FgColours.Magenta, BgColours.White);
+            rule.wl("3. to fire, call out a grid coordinate (e.g., A5)", FgColours.Magenta, BgColours.White);
+            rule.wl("4. your opponent marks the hit or miss on their board", FgColours.Magenta, BgColours.White);
+            rule.wl("5. the first player to sink all of the other player's ships wins!", FgColours.Magenta, BgColours.White);
+
+            // Additional rules for clarity:
+            rule.wl("6. ships cannot overlap or extend beyond the board", FgColours.Magenta, BgColours.White);
+            rule.wl("7. ships can be placed horizontally or vertically, but not diagonally", FgColours.Magenta, BgColours.White);
+            rule.wl("8. each player has 5 ships: Carrier (5 spaces), Battleship (4), Cruiser (3), Submarine (3), Destroyer (2)", FgColours.Magenta, BgColours.White);
+            rule.wl("press any key to return to menu");
+            return rule;
+        }
 
         public static Component Grid(Tile[,] grid) {
             Component res = new Component();

@@ -109,8 +109,8 @@ namespace VesselFeud {
             //TODO MAKE PRETTY
             Component p_comp = Components.Grid(this.pGrid);
             Component e_comp = Components.Grid(this.eGrid);
-            p_comp.draw(50, 10);
-            e_comp.draw(100, 10);
+            p_comp.draw(0, 0);
+            e_comp.draw(30, 0);
         }
 
         public bool verify_placement(int x, int y, Ship ship, bool h) {
