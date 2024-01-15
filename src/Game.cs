@@ -10,8 +10,8 @@ namespace VesselFeud {
         public Player? player2;
 
         public Game() {
-            // this.ships = [new Ship("Dick", 2, 4), new Ship("Carrier",1, 5), new Ship("Cruiser", 3, 2) ];
-            this.ships = [new Ship("dick", 1, 4)];
+            // this.ships = [new Ship("Destroyer", 2, 1), new Ship("Submarine",2, 2), new Ship("Cruiser", 3, 2) ];
+            this.ships = [new Ship("meow",1,4)];
         }
 
 
@@ -45,28 +45,30 @@ namespace VesselFeud {
 
             while (true) {
                 //winner screen player1
-                if (this.turn(player1, player2)) { break; };
+                if (this.turn(player1, player2)) { Components.Limbo($"{player1.name} wins").draw(MIDDLEX,MIDDLEY); System.Threading.Thread.Sleep(5000); break; };
                 //winer screen player2
-                if (this.turn(player2, player1)) { break; };
+                if (this.turn(player2, player1)) { Components.Limbo($"{player2.name} wins").draw(MIDDLEX,MIDDLEY); System.Threading.Thread.Sleep(5000); break; };
                 this.Serialize("pvp");
             }
         }
         public void init_PvE() {
-            Console.WriteLine("your name");
+            Console.Clear();
+            Console.Write("Your name:");
             player1.name = (Console.ReadLine());            
             player1.init_grid();
             player2.init_grid();
             player1.place_ships(this.ships);
             player2.place_ships(this.ships);
+            PvE();
         }
         public void PvE() {
 
-            while (true) {
-                if (this.turn(player1, player2)) { break; }
+           while (true) {
+                if (this.turn(player1, player2)) { Components.Limbo("you win!!").draw(MIDDLEX,MIDDLEY); System.Threading.Thread.Sleep(5000); break; }
                 var coords = player2.Turn();
                 var result = player1.Attack(coords.Item1,coords.Item2);
                 player2.result(result,coords.Item1,coords.Item2);
-                if (player1.hasLost()) { break;}
+                if (player1.hasLost()) { Components.Limbo("robot wins >:( angry robot").draw(MIDDLEX,MIDDLEY); System.Threading.Thread.Sleep(5000); break;}
                 this.Serialize("pve");
             }
         }
@@ -74,9 +76,8 @@ namespace VesselFeud {
             Component boat = Components.StartupBoat();
             Component current = Components.MainMenu();
             Console.Clear();
-
-            boat.draw(MIDDLEX, MIDDLEY);
-            System.Threading.Thread.Sleep(500);
+            boat.draw(MIDDLEX - 5, MIDDLEY - 5);
+            System.Threading.Thread.Sleep(1500);
 
             while (true) {
                 Console.Clear();
@@ -101,6 +102,7 @@ namespace VesselFeud {
                                 break;
                             default: 
                                 current = Components.MainMenu();
+                                current.draw(0,0);
                                 break;
 
                         }
@@ -130,11 +132,13 @@ namespace VesselFeud {
                         current = Components.MainMenu();
                         break;
                     case '3':
+                        Console.Clear();
                         current = Components.Rules();
                         current.draw(0,0);
                         Console.ReadKey();
                         current = Components.MainMenu();
                         break;
+                   case '4': System.Environment.Exit(1); break;
                     default:
                         break;
 
@@ -218,7 +222,7 @@ namespace VesselFeud {
 
         }
         public override void place_ships(Ship[] ships) {
-            Component grid = Components.Grid(pGrid);
+            Component grid = Components.Grid(pGrid,"Ship Placement","");
             (int, int, bool) test = (0, 0, false);
             bool verify = false;
             foreach (Ship ship in ships) {
@@ -226,11 +230,9 @@ namespace VesselFeud {
                     test = (0, 0, false);
                     verify = false;
                     while (test.Item3 == false || verify == false) {
-                        grid = Components.Grid(pGrid);
+                        grid = Components.Grid(pGrid,"Ship placement",$"Placing {ship.name} no.{i} \n Enter Coordinates:");
                         Console.Clear();
                         grid.draw(0,0);
-                        Console.WriteLine($"Placing {ship.name} no.{i}");
-                        Console.Write("Enter Coordinates:");
                         test = format(Console.ReadLine());
                         Console.Write("Enter orientation h/v:");
                         var orient = Console.ReadKey().KeyChar == 'h' ? true : false;
@@ -254,10 +256,13 @@ namespace VesselFeud {
 
 
     //TODO make exist :3
-    public class Robot : Player {
+    public class Robot : Player { 
         public override (int, int) Turn() {
             Random random = new Random();
             return (random.Next(7),random.Next(7));
+        }
+        public Robot() {
+            this.name = "robot";
         }
         public override void place_ships(Ship[] ships) {
             //fimsh copilot write place_ships functiono

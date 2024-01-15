@@ -106,9 +106,9 @@ namespace VesselFeud {
         }
 
         public void render_grids() {
-            //TODO MAKE PRETTY
-            Component p_comp = Components.Grid(this.pGrid);
-            Component e_comp = Components.Grid(this.eGrid);
+            Component p_comp = Components.Grid(this.pGrid,"your grid","");
+            Component e_comp = Components.Grid(this.eGrid,"enemy grid", "Input Coordinate:");
+
             p_comp.draw(0, 0);
             e_comp.draw(30, 0);
         }

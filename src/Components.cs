@@ -17,9 +17,9 @@ namespace VesselFeud {
             battleship.wl("                    +---------------___[}-_===_.'____                 //");
             battleship.wl("                ____`-' ||___-{]_| _[}-  |     |_[___/==--            //   _");
             battleship.wl(" __..._____--==/___]_|__|_____________________________[___/==--____,------' .7");
-            battleship.wl("|                                                                 HMS FLOPPA/");
+            battleship.w("|                                                                 "); battleship.w("HMS FLOPPA",FgColours.Blue); battleship.wl("/");
             battleship.wl(" \\_________________________________________________________________________|");
-            battleship.wl("                                   VesselFeuds                                ");
+            battleship.wl("                                   VesselFeuds                                ",FgColours.Red);
 
             return battleship;
         }
@@ -73,9 +73,10 @@ namespace VesselFeud {
             return rule;
         }
 
-        public static Component Grid(Tile[,] grid) {
+        public static Component Grid(Tile[,] grid,string title,string message) {
             Component res = new Component();
             string[] letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+            res.wl($"     {title}");
             res.wl("    1 2 3 4 5 6 7 8  ");
             res.wl("  ┌─────────────────┐");
             for (int y = 0; y < 8; y++) {
@@ -93,6 +94,7 @@ namespace VesselFeud {
                 res.wl("│");
             }
             res.wl("  └─────────────────┘");
+            res.w($"{message}");
             return res;
 
 
