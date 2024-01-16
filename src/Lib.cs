@@ -10,11 +10,10 @@ namespace VesselFeud {
         //Ship rendering characters: syntax is x_Y where x = orientation, bar c which is center , y = position(start piece,end piece example, v_S is the start piece of a vertical ship, IM SORRY
         v_S = 'A',
         v_E = 'V',
+        v_N = '‖',
 
         h_S = '<',
         h_E = '>',
-
-        v_N = '‖',
         h_N = '=',
     }
 

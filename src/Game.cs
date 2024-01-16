@@ -259,20 +259,22 @@ namespace VesselFeud {
     public class Robot : Player { 
         public override (int, int) Turn() {
             Random random = new Random();
-            return (random.Next(7),random.Next(7));
+            while (true) {
+                var x = random.Next(7); var y = random.Next(7);
+                if (eGrid[x,y] == Tile.Empty) { return (x,y);} 
+            }
         }
         public Robot() {
             this.name = "robot";
         }
         public override void place_ships(Ship[] ships) {
-            //fimsh copilot write place_ships functiono
             int x = 0;
             int y = 0;
             bool h = false;
             foreach(var ship in ships ) {
                 Random random = new Random();
                 while (true) {
-                    x = random.Next(10); y = random.Next(10);
+                    x = random.Next(7); y = random.Next(7);
                     h = random.Next(1) == 0 ? true : false;
                     if (verify_placement(x , y , ship , h)) {break;}
                 }
