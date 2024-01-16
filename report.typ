@@ -122,6 +122,21 @@
    ```cs !pGrid.Cast<Tile>().Any(tile => (tile != Tile.Hit && tile != Tile.Missed && tile != Tile.Empty));
 ```
   As I had multiple characters for Ships, i checked if any of the tiles were Not not a ship, cleverly using the cast method to flatten the 2D array, and .Any() is at worst case O(n) but does break once a "true" condition is found
-
+  === File Serialization/Deserialization
+    Done through Newtonsoft.Json as it allows for simple and clean typecasting without weird hurdles.
+  === Rendering
+    as the rendering of the grid had spacing in between to create a more equal looking board, my rendering function contained code which replaced spaces with the correct character to make boats seem more full
+ === Ship Rendering
+    my ships have separate characters for start, ends and centers, depending on orientation and length of ship
   === the entirety of the Interactions between players
      Due to lack of foreshadowing, a seemingly good idea turned into a caffeine fueled little problem which was then fixed by more caffeine fueled little problems, it works but it is not what was intended
+
+
+
+== Evaluation
+  Overall, the project achieved the outlined outlines whithin a reasonable accuracy, including the further challenges, if the project would be undertaken again. i would
+  - rewrite it in rust
+  - make the overall UI nicer to use
+  - plan the entire project structure beforehand
+  - use more descriptive variable names
+  - make the AI more 
