@@ -81,13 +81,14 @@ namespace VesselFeud {
             res.wl("  ┌─────────────────┐");
             for (int y = 0; y < 8; y++) {
                 res.w($"{letters[y]} │ ");
+                // fills in space due to interesting rendering
                 for (int x = 0; x < 8; x++) {
                     char supplement = ' ';
                     try {
                         if (grid[x, y] == Tile.h_N | grid[x, y] == Tile.h_S) { supplement = (char)(Tile.h_N); }
                     }
                     catch {
-                        supplement = ' ';
+                       // meow meow meow meow meow this doesn't actually need to do anything its just error handling
                     }
                     res.w($"{(char)grid[x, y]}{supplement}");
                 }

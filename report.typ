@@ -1,3 +1,5 @@
+#set par(justify: true)
+#set page(numbering: "1", margin: 2cm)
 #let meow(name,inputs,returns) = [
   \ #text(13pt,weight:700,name) \
   Inputs: #raw(inputs) \
@@ -25,7 +27,6 @@
 
 = Documented Design
 
-=== Data Structures
 
     == Structs & Enums
     the Player (Human or Robot) Stores a Player grid (pGrid) and an Enemy grid (eGrid), which are a 8x8 2D array of  Tiles. Players also store their "name" which is input by the user if the Player class is inherited by a Human, or "robot" if it is a robot.
@@ -86,7 +87,7 @@
       formats a players coordinate input, e.g. "a4,4a" into a coordinate axis, and responds on if it was a valid coordinate
       #meow("Player.render_grids","null","null")
       renders the player and enemy grid
-      #meow("verify_placement","int,int,Ship,bool","bool")
+      #meow("Player.verify_placement","int,int,Ship,bool","bool")
       checks if you can place the ship in the orientation and position, if possible places, else returns false
 
       #meow("Component.w","string,FgColour,BgColour","null")
@@ -95,7 +96,32 @@
       "writes" a line to the current component with Colours
       #meow("Component.draw","int,int","void")
       renders the component at the position
+
+      #meow("Human.Turn","null","(int,int)")
+      performs a humans attack
+      #meow("Human.place_ships","Ship[]","null")
+      places all the ships with player input, error handling
+
+      #meow("Robot.Turn","null","(int,int)")
+      Performs Robots random attack selection
+      #meow("place_ships","Ship[]","null")
+      places all the ships randomly, error handling
       
 
     
-  
+== Classes
+   - Player: abstract class which contain shared code between Human and Robot classes
+   - Human: inherits Player class, allows for user input of ship placement and attacking
+   - Robot: inherits Player class, acts like a robor
+   - Game: plays the game for you, also acts like a menu handle
+   - Component: General component rendering/creation
+   - Components: Pre written components used for UI
+
+==  Design Decisions of Interest
+  === Player.hasLost()
+   ```cs !pGrid.Cast<Tile>().Any(tile => (tile != Tile.Hit && tile != Tile.Missed && tile != Tile.Empty));
+```
+  As I had multiple characters for Ships, i checked if any of the tiles were Not not a ship, cleverly using the cast method to flatten the 2D array, and .Any() is at worst case O(n) but does break once a "true" condition is found
+
+  === the entirety of the Interactions between players
+     Due to lack of foreshadowing, a seemingly good idea turned into a caffeine fueled little problem which was then fixed by more caffeine fueled little problems, it works but it is not what was intended

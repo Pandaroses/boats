@@ -42,9 +42,9 @@ namespace VesselFeud {
 
 
 
-    //MAKE ALIGNING TO CENTER WORK
     public class Component {
         public String self;
+        //write/writeline but shortened because its ugly
         public void w(string content, FgColours fg = FgColours.White, BgColours bg = BgColours.Default) { String strung = $"\x1b[38;5;{(int)fg}m\x1b[48;5;{(int)bg}m{content}\x1b[0m"; self += strung; if (dimensions.Item1 <= strung.Length) { dimensions.Item1 = strung.Length; } }
         public void wl(string content, FgColours fg = FgColours.White, BgColours bg = BgColours.Default) { String strung = $"\x1b[38;5;{(int)fg}m\x1b[48;5;{(int)bg}m{content}\x1b[0m\n"; self += strung; if (dimensions.Item1 <= strung.Length) { dimensions.Item1 = strung.Length; } dimensions.Item2 += 1; }
         public Component(string self = "") => this.self = self;

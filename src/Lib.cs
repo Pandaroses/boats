@@ -43,6 +43,7 @@ namespace VesselFeud {
             };
 
         public string? name;
+        //p stands for player!!!
         public Tile[,] pGrid = new Tile[8, 8];
         public Tile[,] eGrid = new Tile[8, 8];
 
@@ -80,8 +81,9 @@ namespace VesselFeud {
 
         public abstract void place_ships(Ship[] ships);
 
-
+        // (x,y,valid)
         public (int, int, bool) format(string input) {
+            //magic error handling
             switch (input.Length) {
                 case < 2:
                     return (-1, 0, false);
@@ -125,7 +127,7 @@ namespace VesselFeud {
                     }
                 }
             }
-
+            // if this makes no sense, read tile enum
             for (int i = 0; i < ship.length; i++) {
                 if (h) {
                     Tile tile = Tile.h_N;

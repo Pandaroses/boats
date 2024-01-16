@@ -10,8 +10,7 @@ namespace VesselFeud {
         public Player? player2;
 
         public Game() {
-            // this.ships = [new Ship("Destroyer", 2, 1), new Ship("Submarine",2, 2), new Ship("Cruiser", 3, 2) ];
-            this.ships = [new Ship("meow",1,4)];
+            this.ships = [new Ship("Destroyer", 2, 1), new Ship("Submarine",2, 2), new Ship("Cruiser", 3, 2) ];
         }
 
 
@@ -78,7 +77,7 @@ namespace VesselFeud {
             Console.Clear();
             boat.draw(MIDDLEX - 5, MIDDLEY - 5);
             System.Threading.Thread.Sleep(1500);
-
+            // i lost the game
             while (true) {
                 Console.Clear();
                 current.draw(0,0);
@@ -275,6 +274,7 @@ namespace VesselFeud {
                 Random random = new Random();
                 while (true) {
                     x = random.Next(7); y = random.Next(7);
+                    // absolutely useless but its very funny so i'm keeping it
                     h = random.Next(1) == 0 ? true : false;
                     if (verify_placement(x , y , ship , h)) {break;}
                 }
